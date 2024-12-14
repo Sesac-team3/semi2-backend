@@ -29,13 +29,18 @@ jobs:
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag hyungs0703/sesacsemi2:latest
 
-      # 4. Docker Hub 로그인
+      # 4. Docker 이미지에서 테스트 실행
+      - name: Run tests inside Docker container
+        run: |
+          docker run --rm hyungs0703/sesacsemi2:latest ./gradlew test
+
+      # 5. Docker Hub 로그인
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # 5. Docker 이미지 푸시
+      # 6. Docker 이미지 푸시
       - name: Push the Docker image
         run: docker push hyungs0703/sesacsemi2:latest
