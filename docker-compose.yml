@@ -4,7 +4,7 @@ services:
   springboot-app:
     image: hyungs0703/sesacsemi2:latest
     build:
-      context: .
+      context: src/main/java
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
