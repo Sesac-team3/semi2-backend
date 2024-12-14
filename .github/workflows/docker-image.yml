@@ -40,7 +40,7 @@ jobs:
       # 6. Docker Compose로 서비스 실행 및 테스트
       - name: Start Docker Compose services and run tests
         run: |
-          docker-compose -f docker-compose.yml up -d 
+          docker-compose -f docker-compose.yml up -d -T
           docker-compose exec springboot-app ./gradlew test  
           docker-compose down  
 
