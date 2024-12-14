@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  springboot-app:
+    image: hyungs0703/sesacsemi2:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/sesac
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
+
+    depends_on:
+      - mysql
+      - redis
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: sesac
+    ports:
+      - "3306:3306"
+
+  # Redis 서비스
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    # environment:
+    #   REDIS_PASSWORD: your_redis_password_here
+
