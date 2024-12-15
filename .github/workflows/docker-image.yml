@@ -31,10 +31,10 @@ jobs:
           sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
           sudo chmod +x /usr/local/bin/docker-compose
 
-      # 4. Docker 이미지 빌드
+      # 4. Docker 이미지 빌드 (ARM64 아키텍처용)
       - name: Build the Docker image
         run: |
-          docker build -t hyungs0703/sesacsemi2:latest .
+          docker build --platform linux/arm64 -t hyungs0703/sesacsemi2:latest .
 
       # 5. Docker 서비스 실행 (백그라운드 실행)
       - name: Start services with Docker Compose
