@@ -44,7 +44,7 @@ jobs:
       # 6. Docker 컨테이너에서 테스트 실행
       - name: Run tests inside Docker container
         run: |
-          docker-compose exec springboot-app ./gradlew test
+          docker-compose exec -T springboot-app ./gradlew test
 
       # 7. Docker 서비스 종료
       - name: Shut Down Services
