@@ -4,6 +4,8 @@ on:
   push:
     branches: [ "main" ]
 
+env:
+  DOCKER_IMAGE_TAG_NAME: sesacsemi2
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,7 +31,7 @@ jobs:
       # 4. Docker 이미지 빌드 (ARM64 아키텍처용)
       - name: Build the Docker image
         run: |
-          docker build --platform linux/arm64 -t hyungs0703/sesacsemi2:latest .
+          docker build --platform linux/arm64 -t ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_TAG_NAME }}:latest .
 
       # 4. Docker Hub 로그인
       - name: Log in to Docker Hub
@@ -41,4 +43,8 @@ jobs:
       # 5. Docker 이미지 푸시
       - name: Push the Docker image
         run: |
-          docker push hyungs0703/sesacsemi2:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_TAG_NAME }}:latest
+
+      # 6. QEMU(Quick Emulator)를 설정
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
