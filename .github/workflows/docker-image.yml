@@ -3,15 +3,12 @@ name: Build and Push Docker Image
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. GitHub Repository Clone
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -22,10 +19,14 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Build with Gradle
-        run: ./gradlew clean build --no-daemon
+      # 3.권한 부여
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
-      # 3. Docker 이미지 빌드 (ARM64 아키텍처용)
+      - name: Build with Gradle
+        run: ./gradlew clean build
+
+      # 4. Docker 이미지 빌드 (ARM64 아키텍처용)
       - name: Build the Docker image
         run: |
           docker build --platform linux/arm64 -t hyungs0703/sesacsemi2:latest .
