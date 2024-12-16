@@ -3,7 +3,7 @@ name: Auto Create Pull Request
 on:
   push:
     branches:
-      - dev
+      - other-branch  # 다른 브랜치에서 push가 될 때 PR 생성
 
 jobs:
   create-pull-request:
@@ -18,9 +18,9 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Auto-generated PR"
-          base: main
-          branch: dev
-          title: "PR: dev to main"
+          base: dev  # PR의 목표 브랜치가 dev
+          branch: other-branch  # PR을 생성할 브랜치
+          title: "PR: other-branch to dev"  # PR 제목
           body: |
             ## :memo: Pull Request 설명
 
@@ -43,4 +43,3 @@ jobs:
             
             ### 추가 설명
             - 추가적인 설명이나 주의할 점
-
