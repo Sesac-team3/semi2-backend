@@ -2,7 +2,7 @@ name: Build and Push Docker Image
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "dev" ]
 
 env:
   DOCKER_IMAGE_TAG_NAME: sesacsemi2
