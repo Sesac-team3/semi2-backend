@@ -33,7 +33,7 @@ public class JwtUtil {
 	public static final String AUTHORIZATION_HEADER = "Authorization";
 	public static final String REFRESH_TOKEN = "Refresh";
 	public static final String AUTHORIZATION_KEY = "auth";
-	public static final String BEARER_PREFIX = "Bearer";
+	public static final String BEARER_PREFIX = "Bearer ";
 	private static final Logger logger = LoggerFactory.getLogger("JWT 관련 로그");
 
 	@Value("${jwt.secret-key}")
@@ -102,7 +102,7 @@ public class JwtUtil {
 		addJwtToHeader(AUTHORIZATION_HEADER, BEARER_PREFIX + accessToken, response);
 		addRefreshTokenCookie(response, refreshToken);
 
-		return accessToken;
+		return refreshToken;
 	}
 
 	public String getTokenFromHeader(String headerName, HttpServletRequest request) {
