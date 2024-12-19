@@ -28,7 +28,6 @@ public class WebSecurityConfig {
 
 	private final JwtUtil jwtUtil;
 	private final UserDetailsServiceImpl userDetailsService;
-	private final AuthenticationManager authenticationManager;
 
 	@Bean
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {

@@ -4,12 +4,10 @@ import com.example.sesacsemi2.user.entity.User;
 import com.example.sesacsemi2.user.entity.UserRole;
 import java.util.Collection;
 import java.util.List;
-import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-@Getter
 public record UserDetailsImpl(User user) implements UserDetails {
 
 	@Override
