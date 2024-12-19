@@ -29,7 +29,7 @@ public class AuthController {
 		userService.signup(signUpRequestDto);
 
 		return ResponseEntity.ok().body(new CommonResponseDto<>(
-			HttpStatus.CONTINUE.value(), "회원가입이 완료되었습니다", null));
+			HttpStatus.CREATED.value(), "회원가입이 완료되었습니다", null));
 	}
 
 }
