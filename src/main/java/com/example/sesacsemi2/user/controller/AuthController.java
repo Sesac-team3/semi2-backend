@@ -1,9 +1,10 @@
 package com.example.sesacsemi2.user.controller;
 
 import com.example.sesacsemi2.global.dto.CommonResponseDto;
+import com.example.sesacsemi2.user.dto.LoginRequestDto;
 import com.example.sesacsemi2.user.dto.SignUpRequestDto;
-import com.example.sesacsemi2.user.repository.UserRepository;
-import com.example.sesacsemi2.user.service.UserServiceImpl;
+import com.example.sesacsemi2.user.service.UserService;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,9 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class AuthController {
 
-	private final UserRepository userRepository;
-	private final UserServiceImpl userService;
-
+	private final UserService userService;
 
 	@PostMapping("/signup")
 	public ResponseEntity<CommonResponseDto<Void>> signup(
@@ -30,6 +29,18 @@ public class AuthController {
 
 		return ResponseEntity.ok().body(new CommonResponseDto<>(
 			HttpStatus.CREATED.value(), "회원가입이 완료되었습니다", null));
+	}
+
+	@PostMapping("/login")
+	public ResponseEntity<CommonResponseDto<Void>> login(
+		@RequestBody @Valid LoginRequestDto loginRequestDto,
+		HttpServletResponse httpServletResponse
+	) {
+		userService.login(loginRequestDto, httpServletResponse);
+
+		return ResponseEntity.ok().body(new CommonResponseDto<>(
+			HttpStatus.OK.value(), "로그인이 완료되었습니다", null
+		));
 	}
 
 }

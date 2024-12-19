@@ -69,7 +69,7 @@ public class WebSecurityConfig {
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**")
 					.allowedOrigins("http://localhost:3000")
-					.exposedHeaders("Autorization")
+					.exposedHeaders("Authorization")
 					.allowCredentials(true)
 					.allowedHeaders("*")
 					.allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH");
