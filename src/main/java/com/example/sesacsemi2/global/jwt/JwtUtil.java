@@ -14,6 +14,7 @@ import io.jsonwebtoken.UnsupportedJwtException;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
 import jakarta.annotation.PostConstruct;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.security.Key;
 import java.util.Base64;
@@ -24,6 +25,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 @Component
 public class JwtUtil {
@@ -101,6 +103,14 @@ public class JwtUtil {
 		addRefreshTokenCookie(response, refreshToken);
 
 		return accessToken;
+	}
+
+	public String getTokenFromHeader(String headerName, HttpServletRequest request) {
+		String token = request.getHeader(headerName);
+		if(StringUtils.hasText(token) && token.startsWith(BEARER_PREFIX)) {
+			return token.substring(BEARER_PREFIX.length());
+		}
+		return null;
 	}
 
 	public  boolean validateToken(String token) {
