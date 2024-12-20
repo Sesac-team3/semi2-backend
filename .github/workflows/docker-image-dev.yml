@@ -31,7 +31,7 @@ jobs:
       # 4. Docker 이미지 빌드 (ARM64 아키텍처용)
       - name: Build the Docker image
         run: |
-          docker build --platform linux/arm64 -t ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_TAG_NAME }}:latest .
+          docker build --platform linux/amd64 -t ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_TAG_NAME }}:latest .
 
       # 4. Docker Hub 로그인
       - name: Log in to Docker Hub
