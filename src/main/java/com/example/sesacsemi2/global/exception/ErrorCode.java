@@ -1,6 +1,5 @@
 package com.example.sesacsemi2.global.exception;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
@@ -23,7 +22,15 @@ public enum ErrorCode {
 	// 사용자 관련 에러
 	NOT_FOUND_USERNAME(HttpStatus.NOT_FOUND, "해당 아이디는 존재하지 않습니다."),
 	ALREADY_USERNAME(HttpStatus.CONFLICT, "해당 아이디는 이미 사용 중입니다."),
-	INVALID_PASSWORD(HttpStatus.BAD_REQUEST, "비밀번호가 일치하지 않습니다.");
+	INVALID_PASSWORD(HttpStatus.BAD_REQUEST, "비밀번호가 일치하지 않습니다."),
+
+	// S3 이미지 업로드 에러
+	FILE_UPLOAD_ERROR(HttpStatus.PAYLOAD_TOO_LARGE, "파일 크기가 최대 제한을 초과하였습니다."),
+	FILE_CONVERSION_ERROR(HttpStatus.BAD_REQUEST, "파일 변환에 실패하였습니다")
+	;
+
+
+
 
 	private final HttpStatus httpStatus;
 	private final String msg;

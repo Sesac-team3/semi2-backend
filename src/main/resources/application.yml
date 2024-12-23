@@ -8,7 +8,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
@@ -17,9 +17,27 @@ spring:
     redis:
       host: localhost
       port: 6379
-      timeout: 2s
+      timeout: 2000ms
 
 jwt :
   secret-key: ${JWT_SECRET_KEY}
   access-expire-time: ${JWT_ACCESS_EXPIRE_TIME}
   refresh-expire-time: ${JWT_REFRESH_EXPIRE_TIME}
+
+cloud:
+  aws:
+    s3:
+      bucket: ${AWS_S3_BUCKET} # 환경 변수 필요
+    region:
+      static: ${AWS_S3_REGION} # 환경 변수 필요
+    stack:
+      auto: false
+    credentials:
+      access-key: ${AWS_S3_ACCESS_KEY_ID} # 환경 변수 필요
+      secret-key: ${AWS_S3_SECRET_ACCESS_KEY} # 환경 변수 필요
+
+servlet:
+  multipart:
+    enabled: true
+    max-file-size: 10MB
+
