@@ -5,17 +5,15 @@ import com.example.sesacsemi2.global.exception.GlobalException;
 import com.example.sesacsemi2.global.jwt.JwtUtil;
 import com.example.sesacsemi2.user.dto.LoginRequestDto;
 import com.example.sesacsemi2.user.dto.SignUpRequestDto;
+import com.example.sesacsemi2.user.entity.User;
 import com.example.sesacsemi2.user.entity.UserRole;
 import com.example.sesacsemi2.user.repository.UserRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.concurrent.TimeUnit;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.example.sesacsemi2.user.entity.User;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
